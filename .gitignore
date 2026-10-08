@@ -34,3 +34,8 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+.edge_temp/
+scripts/*.mp4
+scripts/*.png
+scripts/*.mp3
