@@ -15,7 +15,7 @@ export default function LaunchPage() {
       <LaunchTerminal
         isLiveMode={false}
         walletConnected={true}
-        walletAddress="Tess9kQ2L4vM7nB6rT8wP1yZ3cX5vA0eR2tY4uI6oP5"
+        walletAddress="Au6y8RRdGUFMm4jKVbguCVcwUbiGtyz9VCPLSF388Cka"
       />
     </Suspense>
   );

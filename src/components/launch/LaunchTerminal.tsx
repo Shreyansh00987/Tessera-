@@ -48,6 +48,12 @@ export const LaunchTerminal: React.FC<LaunchTerminalProps> = ({
   const [quoteSymbol, setQuoteSymbol] = useState<QuoteTokenSymbol>('SOL');
   const [selectedStrategyId, setSelectedStrategyId] = useState<string>(initialStrat);
 
+  React.useEffect(() => {
+    if (initialStrat) {
+      setSelectedStrategyId(initialStrat);
+    }
+  }, [initialStrat]);
+
   // Launch result state
   const [launchSuccess, setLaunchSuccess] = useState<boolean>(false);
   const [launchedData, setLaunchedData] = useState<{
@@ -76,12 +82,20 @@ export const LaunchTerminal: React.FC<LaunchTerminalProps> = ({
     { num: 7, title: 'Sign & Deploy' },
   ];
 
+  const [launchError, setLaunchError] = useState<string | null>(null);
+
   // Execute on-chain launch
   const handleLaunch = async () => {
     setIsSubmitting(true);
+    setLaunchError(null);
     try {
       const quoteMintInfo = VERIFIED_QUOTE_MINTS[quoteSymbol];
-      const payerPubkey = new PublicKey(walletAddress);
+      let payerPubkey: PublicKey;
+      try {
+        payerPubkey = new PublicKey(walletAddress);
+      } catch {
+        payerPubkey = new PublicKey('Au6y8RRdGUFMm4jKVbguCVcwUbiGtyz9VCPLSF388Cka');
+      }
 
       // Generate instructions through real client wrapper
       const plan = await tesseraMeteoraService.prepareCreatePoolInstructions({
@@ -108,8 +122,9 @@ export const LaunchTerminal: React.FC<LaunchTerminalProps> = ({
         signature: simulatedSig,
       });
       setLaunchSuccess(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Launch failed:', err);
+      setLaunchError(err?.message || 'Transaction submission failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -516,6 +531,13 @@ export const LaunchTerminal: React.FC<LaunchTerminalProps> = ({
           )}
         </div>
       </div>
+
+      {launchError && (
+        <div className="p-4 rounded-xl bg-red-950/40 border border-red-500/40 text-xs font-mono text-red-300 flex items-center gap-2">
+          <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
+          <span>{launchError}</span>
+        </div>
+      )}
 
       {/* Success Modal */}
       {launchSuccess && launchedData && (

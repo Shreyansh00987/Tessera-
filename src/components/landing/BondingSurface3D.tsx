@@ -314,6 +314,7 @@ export const BondingSurface3D: React.FC<BondingSurface3DProps> = ({
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
       className="relative w-full h-full cursor-grab active:cursor-grabbing select-none"
     >
       <canvas ref={canvasRef} className="w-full h-full block" />

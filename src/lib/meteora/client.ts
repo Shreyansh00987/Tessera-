@@ -97,12 +97,16 @@ export class TesseraMeteoraService {
       migration.quoteSymbol === 'SOL' ? TokenDecimal.NINE : TokenDecimal.SIX
     );
 
+    const isFixedFee = feeSchedule.startingFeeBps === feeSchedule.endingFeeBps;
     let sdkBaseFeeMode = BaseFeeMode.FeeSchedulerLinear;
-    if (feeSchedule.baseFeeMode === 'FEE_SCHEDULER_EXPONENTIAL') {
+    if (!isFixedFee && feeSchedule.baseFeeMode === 'FEE_SCHEDULER_EXPONENTIAL') {
       sdkBaseFeeMode = BaseFeeMode.FeeSchedulerExponential;
-    } else if (feeSchedule.baseFeeMode === 'FEE_SCHEDULER_LINEAR' || feeSchedule.baseFeeMode === 'FIXED') {
+    } else {
       sdkBaseFeeMode = BaseFeeMode.FeeSchedulerLinear;
     }
+
+    const numberOfPeriod = isFixedFee ? 0 : (feeSchedule.numberOfPeriods || 60);
+    const totalDuration = isFixedFee ? 0 : (feeSchedule.totalDurationSeconds || 300);
 
     return buildCurveWithCustomSqrtPrices({
       token: {
@@ -111,7 +115,7 @@ export class TesseraMeteoraService {
         tokenQuoteDecimal: migration.quoteSymbol === 'SOL' ? TokenDecimal.NINE : TokenDecimal.SIX,
         tokenAuthorityOption: TokenAuthorityOption.PartnerUpdateAuthority,
         totalTokenSupply: tokenSupply,
-        leftover: 0,
+        leftover: 100, // Safe integer rounding buffer for on-chain arithmetic
       },
       fee: {
         baseFeeParams: {
@@ -119,8 +123,8 @@ export class TesseraMeteoraService {
           feeSchedulerParam: {
             startingFeeBps: feeSchedule.startingFeeBps,
             endingFeeBps: feeSchedule.endingFeeBps,
-            numberOfPeriod: feeSchedule.numberOfPeriods || 60,
-            totalDuration: feeSchedule.totalDurationSeconds || 300,
+            numberOfPeriod,
+            totalDuration,
           },
         },
         dynamicFeeEnabled: feeSchedule.dynamicFeeEnabled,

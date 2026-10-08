@@ -50,6 +50,11 @@ export const CurveLab: React.FC = () => {
     }
   };
 
+  // Sync state if URL query param changes
+  useEffect(() => {
+    handleLoadStrategy(initialStratId);
+  }, [initialStratId]);
+
   // Compute curve capacities
   const calculatedSegments = useMemo(() => {
     return computeSegmentsWithCapacities(segments, 1_000_000_000);

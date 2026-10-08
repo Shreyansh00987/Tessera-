@@ -60,7 +60,11 @@ export const AssetTerminal: React.FC = () => {
     if (!swapQuote) return;
     setIsSwapping(true);
     setTimeout(() => {
-      setQuoteReserve((prev) => Math.min(version.migration.migrationQuoteThreshold, prev + swapQuote.amountIn - swapQuote.feeAmount));
+      if (swapMode === 'BUY') {
+        setQuoteReserve((prev) => Math.min(version.migration.migrationQuoteThreshold, prev + swapQuote.amountIn - swapQuote.feeAmount));
+      } else {
+        setQuoteReserve((prev) => Math.max(0.1, prev - (swapQuote.amountIn - swapQuote.feeAmount)));
+      }
       const newTrade = {
         id: Math.random().toString(),
         time: new Date().toLocaleTimeString(),
