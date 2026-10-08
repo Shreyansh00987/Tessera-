@@ -3,6 +3,8 @@
 > **Launch configs as tradable, performance-ranked financial products.**  
 > The strategy marketplace and quantitative intelligence layer for **Meteora Dynamic Bonding Curve (DBC)**, **DAMM v2**, and **DLMM**.
 
+[![Live Deployment](https://img.shields.io/badge/Live%20App-tessera--seven--psi.vercel.app-10B981?style=for-the-badge&logo=vercel)](https://tessera-seven-psi.vercel.app)
+
 [![Meteora DBC](https://img.shields.io/badge/Meteora-DBC%20v1.5-FF4800?style=flat-square)](https://docs.meteora.ag/developer-guides/dbc)
 [![DAMM v2](https://img.shields.io/badge/Meteora-DAMM%20v2-00F0FF?style=flat-square)](https://docs.meteora.ag/developer-guides/damm-v2)
 [![DLMM](https://img.shields.io/badge/Meteora-DLMM-10B981?style=flat-square)](https://docs.meteora.ag/developer-guides/dlmm)
