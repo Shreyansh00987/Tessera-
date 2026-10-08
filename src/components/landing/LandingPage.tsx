@@ -28,6 +28,7 @@ import {
 import { InteractiveHeroCurve } from './InteractiveHeroCurve';
 import { CURATED_STRATEGIES } from '@/lib/data/strategies';
 import { METEORA_DBC_PROGRAM_ID, METEORA_DAMM_V2_PROGRAM_ID, METEORA_MIGRATION_KEEPERS } from '@/lib/meteora/constants';
+import { Card3D } from '@/components/ui/Card3D';
 
 export const LandingPage: React.FC = () => {
   const [copiedSnippet, setCopiedSnippet] = useState<string | null>(null);
@@ -184,149 +185,173 @@ const { txHash } = await dbc.createPoolWithCustomSqrtPrices({
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Pillar 1: Stocklana & Thin Equity Discovery */}
-          <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#a855f7]/50 rounded-2xl space-y-3 transition-all hover:shadow-glowPurple group">
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-[#a855f7]/15 flex items-center justify-center text-[#c084fc]">
-                <Globe2 className="w-5 h-5" />
+          <Card3D maxTilt={8} glowColor="rgba(168, 85, 247, 0.4)" className="rounded-2xl h-full">
+            <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#a855f7]/50 rounded-2xl space-y-3 transition-all h-full flex flex-col justify-between group shadow-xl">
+              <div>
+                <div className="flex items-center justify-between mb-2" style={{ transform: 'translateZ(18px)' }}>
+                  <div className="w-10 h-10 rounded-xl bg-[#a855f7]/15 flex items-center justify-center text-[#c084fc]">
+                    <Globe2 className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#a855f7]/15 text-[#c084fc] border border-[#a855f7]/30 font-bold">
+                    STOCKLANA / RFQ
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#c084fc] transition-colors" style={{ transform: 'translateZ(14px)' }}>
+                  Tokenized Stocks &amp; Thin Equity
+                </h3>
+                <p className="text-xs text-[#828ea8] leading-relaxed mt-2" style={{ transform: 'translateZ(10px)' }}>
+                  Tuned for thinly traded or newly tokenized equities (xStocks, Backpack Onchain, Ondo RFQ catalogs like $xTSLA &amp; $xNVDA).
+                  Continuous DBC price discovery eliminates order-book illiquidity freezes and enables orderly keeper graduation into USDC DAMM v2.
+                </p>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#a855f7]/15 text-[#c084fc] border border-[#a855f7]/30 font-bold">
-                STOCKLANA / RFQ
-              </span>
+              <div className="pt-3 flex items-center justify-between text-xs font-mono border-t border-[#182136]" style={{ transform: 'translateZ(20px)' }}>
+                <span className="text-[#a855f7]">Anchor: 750 USDC Keeper</span>
+                <Link href="/curvelab?strategy=xstocks-equity-discovery" className="text-[#e2e8f0] hover:text-[#c084fc] flex items-center gap-1 font-bold">
+                  <span>View Curve</span> <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#c084fc] transition-colors">
-              Tokenized Stocks &amp; Thin Equity
-            </h3>
-            <p className="text-xs text-[#828ea8] leading-relaxed">
-              Tuned for thinly traded or newly tokenized equities (xStocks, Backpack Onchain, Ondo RFQ catalogs like $xTSLA &amp; $xNVDA).
-              Continuous DBC price discovery eliminates order-book illiquidity freezes and enables orderly keeper graduation into USDC DAMM v2.
-            </p>
-            <div className="pt-2 flex items-center justify-between text-xs font-mono">
-              <span className="text-[#a855f7]">Anchor: 750 USDC Keeper</span>
-              <Link href="/curvelab?strategy=xstocks-equity-discovery" className="text-[#e2e8f0] hover:text-[#c084fc] flex items-center gap-1 font-bold">
-                <span>View Curve</span> <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
+          </Card3D>
 
           {/* Pillar 2: Novel Curve Archetypes */}
-          <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#ff4800]/50 rounded-2xl space-y-3 transition-all hover:shadow-glow group">
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-[#ff4800]/15 flex items-center justify-center text-[#ff4800]">
-                <TrendingUp className="w-5 h-5" />
+          <Card3D maxTilt={8} glowColor="rgba(255, 72, 0, 0.4)" className="rounded-2xl h-full">
+            <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#ff4800]/50 rounded-2xl space-y-3 transition-all h-full flex flex-col justify-between group shadow-xl">
+              <div>
+                <div className="flex items-center justify-between mb-2" style={{ transform: 'translateZ(18px)' }}>
+                  <div className="w-10 h-10 rounded-xl bg-[#ff4800]/15 flex items-center justify-center text-[#ff4800]">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#ff4800]/15 text-[#ff4800] border border-[#ff4800]/30 font-bold">
+                    NOVEL CURVES
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#ff4800] transition-colors" style={{ transform: 'translateZ(14px)' }}>
+                  Flat, Exponential &amp; Step Curves
+                </h3>
+                <p className="text-xs text-[#828ea8] leading-relaxed mt-2" style={{ transform: 'translateZ(10px)' }}>
+                  Explore out-of-distribution DBC curves: uniform zero-slippage Flat Curves for RWA institutional credit, steep Exponential Curves with dynamic volatility fee decay for anti-snipe meme virality, and Step Ladders for conviction.
+                </p>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#ff4800]/15 text-[#ff4800] border border-[#ff4800]/30 font-bold">
-                NOVEL CURVES
-              </span>
+              <div className="pt-3 flex items-center justify-between text-xs font-mono border-t border-[#182136]" style={{ transform: 'translateZ(20px)' }}>
+                <span className="text-[#ff4800]">4 Standard Archetypes</span>
+                <Link href="/curvelab" className="text-[#e2e8f0] hover:text-[#ff4800] flex items-center gap-1 font-bold">
+                  <span>Design in Lab</span> <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#ff4800] transition-colors">
-              Flat, Exponential &amp; Step Curves
-            </h3>
-            <p className="text-xs text-[#828ea8] leading-relaxed">
-              Explore out-of-distribution DBC curves: uniform zero-slippage Flat Curves for RWA institutional credit, steep Exponential Curves with dynamic volatility fee decay for anti-snipe meme virality, and Step Ladders for conviction.
-            </p>
-            <div className="pt-2 flex items-center justify-between text-xs font-mono">
-              <span className="text-[#ff4800]">4 Standard Archetypes</span>
-              <Link href="/curvelab" className="text-[#e2e8f0] hover:text-[#ff4800] flex items-center gap-1 font-bold">
-                <span>Design in Lab</span> <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
+          </Card3D>
 
           {/* Pillar 3: DBC + DAMM v2 + DLMM Composition */}
-          <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#10b981]/50 rounded-2xl space-y-3 transition-all hover:shadow-glowGreen group">
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-[#10b981]/15 flex items-center justify-center text-[#10b981]">
-                <Workflow className="w-5 h-5" />
+          <Card3D maxTilt={8} glowColor="rgba(16, 185, 129, 0.4)" className="rounded-2xl h-full">
+            <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#10b981]/50 rounded-2xl space-y-3 transition-all h-full flex flex-col justify-between group shadow-xl">
+              <div>
+                <div className="flex items-center justify-between mb-2" style={{ transform: 'translateZ(18px)' }}>
+                  <div className="w-10 h-10 rounded-xl bg-[#10b981]/15 flex items-center justify-center text-[#10b981]">
+                    <Workflow className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/30 font-bold">
+                    TRIPLE STACK
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#10b981] transition-colors" style={{ transform: 'translateZ(14px)' }}>
+                  DBC + DAMM v2 + DLMM Flows
+                </h3>
+                <p className="text-xs text-[#828ea8] leading-relaxed mt-2" style={{ transform: 'translateZ(10px)' }}>
+                  Conviction Pools with post-graduation DLMM compounding. Liquidity graduates autonomously from DBC into permanent DAMM v2 AMM pools, then routes concentrated depth into Meteora DLMM dynamic bins for high-efficiency volatility fee capture.
+                </p>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/30 font-bold">
-                TRIPLE STACK
-              </span>
+              <div className="pt-3 flex items-center justify-between text-xs font-mono border-t border-[#182136]" style={{ transform: 'translateZ(20px)' }}>
+                <span className="text-[#10b981]">100% Permanently Locked</span>
+                <Link href="/lifecycle" className="text-[#e2e8f0] hover:text-[#10b981] flex items-center gap-1 font-bold">
+                  <span>Inspect Pipeline</span> <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#10b981] transition-colors">
-              DBC + DAMM v2 + DLMM Flows
-            </h3>
-            <p className="text-xs text-[#828ea8] leading-relaxed">
-              Conviction Pools with post-graduation DLMM compounding. Liquidity graduates autonomously from DBC into permanent DAMM v2 AMM pools, then routes concentrated depth into Meteora DLMM dynamic bins for high-efficiency volatility fee capture.
-            </p>
-            <div className="pt-2 flex items-center justify-between text-xs font-mono">
-              <span className="text-[#10b981]">100% Permanently Locked</span>
-              <Link href="/lifecycle" className="text-[#e2e8f0] hover:text-[#10b981] flex items-center gap-1 font-bold">
-                <span>Inspect Pipeline</span> <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
+          </Card3D>
 
           {/* Pillar 4: Developer Tooling & WebSocket Streams */}
-          <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#00f0ff]/50 rounded-2xl space-y-3 transition-all hover:shadow-glowCyan group">
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-[#00f0ff]/15 flex items-center justify-center text-[#00f0ff]">
-                <Code2 className="w-5 h-5" />
+          <Card3D maxTilt={8} glowColor="rgba(0, 240, 255, 0.4)" className="rounded-2xl h-full">
+            <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#00f0ff]/50 rounded-2xl space-y-3 transition-all h-full flex flex-col justify-between group shadow-xl">
+              <div>
+                <div className="flex items-center justify-between mb-2" style={{ transform: 'translateZ(18px)' }}>
+                  <div className="w-10 h-10 rounded-xl bg-[#00f0ff]/15 flex items-center justify-center text-[#00f0ff]">
+                    <Code2 className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#00f0ff]/15 text-[#00f0ff] border border-[#00f0ff]/30 font-bold">
+                    DEV TOOLING
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#00f0ff] transition-colors" style={{ transform: 'translateZ(14px)' }}>
+                  Data Streams &amp; Terminal Embeds
+                </h3>
+                <p className="text-xs text-[#828ea8] leading-relaxed mt-2" style={{ transform: 'translateZ(10px)' }}>
+                  Drop-in developer tooling for builders creating custom launchpads and trading terminals. Includes live WebSocket order streams, React component kits, and automated Meteora Invent CLI launch script generators.
+                </p>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#00f0ff]/15 text-[#00f0ff] border border-[#00f0ff]/30 font-bold">
-                DEV TOOLING
-              </span>
+              <div className="pt-3 flex items-center justify-between text-xs font-mono border-t border-[#182136]" style={{ transform: 'translateZ(20px)' }}>
+                <span className="text-[#00f0ff]">Zero-Config Plug &amp; Play</span>
+                <Link href="/developer" className="text-[#e2e8f0] hover:text-[#00f0ff] flex items-center gap-1 font-bold">
+                  <span>Explore Tools</span> <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#00f0ff] transition-colors">
-              Data Streams &amp; Terminal Embeds
-            </h3>
-            <p className="text-xs text-[#828ea8] leading-relaxed">
-              Drop-in developer tooling for builders creating custom launchpads and trading terminals. Includes live WebSocket order streams, React component kits, and automated Meteora Invent CLI launch script generators.
-            </p>
-            <div className="pt-2 flex items-center justify-between text-xs font-mono">
-              <span className="text-[#00f0ff]">Zero-Config Plug &amp; Play</span>
-              <Link href="/developer" className="text-[#e2e8f0] hover:text-[#00f0ff] flex items-center gap-1 font-bold">
-                <span>Explore Tools</span> <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
+          </Card3D>
 
           {/* Pillar 5: DBC Preset Marketplace */}
-          <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#f59e0b]/50 rounded-2xl space-y-3 transition-all hover:shadow-glow group">
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-[#f59e0b]/15 flex items-center justify-center text-[#f59e0b]">
-                <DollarSign className="w-5 h-5" />
+          <Card3D maxTilt={8} glowColor="rgba(245, 158, 11, 0.4)" className="rounded-2xl h-full">
+            <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#f59e0b]/50 rounded-2xl space-y-3 transition-all h-full flex flex-col justify-between group shadow-xl">
+              <div>
+                <div className="flex items-center justify-between mb-2" style={{ transform: 'translateZ(18px)' }}>
+                  <div className="w-10 h-10 rounded-xl bg-[#f59e0b]/15 flex items-center justify-center text-[#f59e0b]">
+                    <DollarSign className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#f59e0b]/15 text-[#f59e0b] border border-[#f59e0b]/30 font-bold">
+                    MARKETPLACE
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#f59e0b] transition-colors" style={{ transform: 'translateZ(14px)' }}>
+                  Pay-to-Use Config Marketplace
+                </h3>
+                <p className="text-xs text-[#828ea8] leading-relaxed mt-2" style={{ transform: 'translateZ(10px)' }}>
+                  Launchpad founders license audited, battle-tested bonding curve presets directly from quantitative creators. Creators earn on-chain licensing fees and ongoing partner trading fees whenever their curves power volume.
+                </p>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#f59e0b]/15 text-[#f59e0b] border border-[#f59e0b]/30 font-bold">
-                MARKETPLACE
-              </span>
+              <div className="pt-3 flex items-center justify-between text-xs font-mono border-t border-[#182136]" style={{ transform: 'translateZ(20px)' }}>
+                <span className="text-[#f59e0b]">Creator Monetization</span>
+                <Link href="/marketplace" className="text-[#e2e8f0] hover:text-[#f59e0b] flex items-center gap-1 font-bold">
+                  <span>Browse Presets</span> <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#f59e0b] transition-colors">
-              Pay-to-Use Config Marketplace
-            </h3>
-            <p className="text-xs text-[#828ea8] leading-relaxed">
-              Launchpad founders license audited, battle-tested bonding curve presets directly from quantitative creators. Creators earn on-chain licensing fees and ongoing partner trading fees whenever their curves power volume.
-            </p>
-            <div className="pt-2 flex items-center justify-between text-xs font-mono">
-              <span className="text-[#f59e0b]">Creator Monetization</span>
-              <Link href="/marketplace" className="text-[#e2e8f0] hover:text-[#f59e0b] flex items-center gap-1 font-bold">
-                <span>Browse Presets</span> <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
+          </Card3D>
 
           {/* Pillar 6: AI Copilot & Deterministic Math */}
-          <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#10b981]/50 rounded-2xl space-y-3 transition-all hover:shadow-glowGreen group">
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-[#10b981]/15 flex items-center justify-center text-[#10b981]">
-                <Cpu className="w-5 h-5" />
+          <Card3D maxTilt={8} glowColor="rgba(16, 185, 129, 0.4)" className="rounded-2xl h-full">
+            <div className="p-6 bg-gradient-to-b from-[#0e1322] to-[#090c14] border border-[#1e273e] hover:border-[#10b981]/50 rounded-2xl space-y-3 transition-all h-full flex flex-col justify-between group shadow-xl">
+              <div>
+                <div className="flex items-center justify-between mb-2" style={{ transform: 'translateZ(18px)' }}>
+                  <div className="w-10 h-10 rounded-xl bg-[#10b981]/15 flex items-center justify-center text-[#10b981]">
+                    <Cpu className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/30 font-bold">
+                    ZERO HALLUCINATION
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#10b981] transition-colors" style={{ transform: 'translateZ(14px)' }}>
+                  Copilot &amp; Rigorous Audits
+                </h3>
+                <p className="text-xs text-[#828ea8] leading-relaxed mt-2" style={{ transform: 'translateZ(10px)' }}>
+                  Synthesize natural language launch objectives into strictly validated Meteora DBC configurations. Every curve segment, sqrt price, and fee schedule is verified against official DBC mathematics with zero hallucinated parameters.
+                </p>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/30 font-bold">
-                ZERO HALLUCINATION
-              </span>
+              <div className="pt-3 flex items-center justify-between text-xs font-mono border-t border-[#182136]" style={{ transform: 'translateZ(20px)' }}>
+                <span className="text-[#10b981]">Zod Schema Validated</span>
+                <Link href="/copilot" className="text-[#e2e8f0] hover:text-[#10b981] flex items-center gap-1 font-bold">
+                  <span>Ask Copilot</span> <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-white font-sans group-hover:text-[#10b981] transition-colors">
-              Copilot &amp; Rigorous Audits
-            </h3>
-            <p className="text-xs text-[#828ea8] leading-relaxed">
-              Synthesize natural language launch objectives into strictly validated Meteora DBC configurations. Every curve segment, sqrt price, and fee schedule is verified against official DBC mathematics with zero hallucinated parameters.
-            </p>
-            <div className="pt-2 flex items-center justify-between text-xs font-mono">
-              <span className="text-[#10b981]">Zod Schema Validated</span>
-              <Link href="/copilot" className="text-[#e2e8f0] hover:text-[#10b981] flex items-center gap-1 font-bold">
-                <span>Ask Copilot</span> <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
+          </Card3D>
         </div>
       </section>
 
@@ -459,65 +484,64 @@ const { txHash } = await dbc.createPoolWithCustomSqrtPrices({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {CURATED_STRATEGIES.slice(0, 3).map((strategy) => (
-            <div
-              key={strategy.id}
-              className="bg-[#0b0e18] border border-[#1b2236] hover:border-[#ff4800]/40 rounded-2xl p-5 flex flex-col justify-between transition-all hover:shadow-xl group"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#ff4800]/15 text-[#ff4800] border border-[#ff4800]/30 font-bold">
-                    {strategy.assetClass}
-                  </span>
-                  <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/30 font-black">
-                    SCORE {strategy.versions[0].score.tesseraScore}
-                  </span>
+            <Card3D key={strategy.id} maxTilt={9} glowColor="rgba(255, 72, 0, 0.35)" className="rounded-2xl h-full">
+              <div className="bg-[#0b0e18] border border-[#1b2236] hover:border-[#ff4800]/40 rounded-2xl p-5 flex flex-col justify-between transition-all h-full group shadow-xl">
+                <div>
+                  <div className="flex items-center justify-between mb-3" style={{ transform: 'translateZ(18px)' }}>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#ff4800]/15 text-[#ff4800] border border-[#ff4800]/30 font-bold">
+                      {strategy.assetClass}
+                    </span>
+                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/30 font-black">
+                      SCORE {strategy.versions[0].score.tesseraScore}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-bold text-white group-hover:text-[#ff4800] transition-colors" style={{ transform: 'translateZ(14px)' }}>
+                    {strategy.name}
+                  </h3>
+                  <p className="text-xs text-[#828ea8] mt-1 line-clamp-2 leading-relaxed" style={{ transform: 'translateZ(10px)' }}>
+                    {strategy.tagline}
+                  </p>
+
+                  <div className="mt-4 p-3 bg-[#070910] border border-[#161d2d] rounded-xl font-mono text-[11px] space-y-1.5" style={{ transform: 'translateZ(12px)' }}>
+                    <div className="flex justify-between">
+                      <span className="text-[#64748b]">Graduation Rate:</span>
+                      <span className="text-[#10b981] font-bold">
+                        {(strategy.versions[0].metrics.graduationRate * 100).toFixed(1)}%
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#64748b]">Max Drawdown:</span>
+                      <span className="text-white font-medium">
+                        {(strategy.versions[0].metrics.maxDrawdownAvg * 100).toFixed(1)}%
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#64748b]">Preset License Cost:</span>
+                      <span className="text-[#00f0ff] font-bold">
+                        {strategy.presetLicenseCost || 'Free (OSS)'}
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
-                <h3 className="text-base font-bold text-white group-hover:text-[#ff4800] transition-colors">
-                  {strategy.name}
-                </h3>
-                <p className="text-xs text-[#828ea8] mt-1 line-clamp-2 leading-relaxed">
-                  {strategy.tagline}
-                </p>
-
-                <div className="mt-4 p-3 bg-[#070910] border border-[#161d2d] rounded-xl font-mono text-[11px] space-y-1.5">
-                  <div className="flex justify-between">
-                    <span className="text-[#64748b]">Graduation Rate:</span>
-                    <span className="text-[#10b981] font-bold">
-                      {(strategy.versions[0].metrics.graduationRate * 100).toFixed(1)}%
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#64748b]">Max Drawdown:</span>
-                    <span className="text-white font-medium">
-                      {(strategy.versions[0].metrics.maxDrawdownAvg * 100).toFixed(1)}%
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#64748b]">Preset License Cost:</span>
-                    <span className="text-[#00f0ff] font-bold">
-                      {strategy.presetLicenseCost || 'Free (OSS)'}
-                    </span>
-                  </div>
+                <div className="mt-5 pt-3 border-t border-[#161c2d] flex items-center gap-2 font-mono text-xs" style={{ transform: 'translateZ(20px)' }}>
+                  <Link
+                    href={`/launch?strategy=${strategy.id}`}
+                    className="w-full py-2 px-3 rounded-lg bg-[#ff4800] hover:bg-[#ff6224] text-white font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-glow"
+                  >
+                    <Rocket className="w-3.5 h-3.5" />
+                    <span>Pay &amp; Launch</span>
+                  </Link>
+                  <Link
+                    href={`/curvelab?strategy=${strategy.id}`}
+                    className="py-2 px-3 rounded-lg bg-[#141a29] hover:bg-[#1c243a] border border-[#232c45] text-white font-medium flex items-center justify-center transition-colors cursor-pointer"
+                  >
+                    <TrendingUp className="w-3.5 h-3.5 text-[#ff4800]" />
+                  </Link>
                 </div>
               </div>
-
-              <div className="mt-5 pt-3 border-t border-[#161c2d] flex items-center gap-2 font-mono text-xs">
-                <Link
-                  href={`/launch?strategy=${strategy.id}`}
-                  className="w-full py-2 px-3 rounded-lg bg-[#ff4800] hover:bg-[#ff6224] text-white font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-glow"
-                >
-                  <Rocket className="w-3.5 h-3.5" />
-                  <span>Pay &amp; Launch</span>
-                </Link>
-                <Link
-                  href={`/curvelab?strategy=${strategy.id}`}
-                  className="py-2 px-3 rounded-lg bg-[#141a29] hover:bg-[#1c243a] border border-[#232c45] text-white font-medium flex items-center justify-center transition-colors cursor-pointer"
-                >
-                  <TrendingUp className="w-3.5 h-3.5 text-[#ff4800]" />
-                </Link>
-              </div>
-            </div>
+            </Card3D>
           ))}
         </div>
       </section>
