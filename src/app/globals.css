@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #06070a;
+  --surface: #0c0e15;
+  --surface-hover: #131622;
+  --card: #10131d;
+  --border: #1a1f2e;
+  --border-hover: #2a324b;
+  --accent: #ff4800;
+  --cyan: #00e5d4;
+  --green: #10b981;
+  --purple: #9d4edd;
+}
+
+body {
+  background-color: var(--bg);
+  color: #f2f5fc;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  background-image: 
+    radial-gradient(circle at 50% -10%, rgba(255, 72, 0, 0.12), transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(0, 229, 212, 0.05), transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #06070a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1c2132;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2b334d;
+}
+
+/* High-Impact Visual Tokens */
+.card-glass {
+  background: rgba(16, 19, 29, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.card-glass:hover {
+  border-color: rgba(255, 72, 0, 0.3);
+}
+
+.glow-pill {
+  box-shadow: 0 0 15px -3px rgba(255, 72, 0, 0.4);
+}
+
+.glow-cyan-pill {
+  box-shadow: 0 0 15px -3px rgba(0, 229, 212, 0.35);
+}
+
+.glow-purple-pill {
+  box-shadow: 0 0 15px -3px rgba(157, 78, 221, 0.35);
+}
+
+/* Radiant animated border */
+.border-gradient-meteora {
+  position: relative;
+}
+
+.border-gradient-meteora::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 72, 0, 0.6), rgba(0, 229, 212, 0.3), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
