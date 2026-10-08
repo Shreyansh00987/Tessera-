@@ -30,7 +30,7 @@ const swap1 = simulateSwapExactInQuote(
   45 // 45 seconds into launch (exponential fee decay active)
 );
 
-const stateAfter = getCurveStateAtQuoteReserve(segments1, currentReserve + swap1.netQuoteIn);
+const stateAfter = getCurveStateAtQuoteReserve(segments1, currentReserve + (swap1.amountIn - swap1.feeAmount));
 
 console.log('  Strategy:', strat1.name);
 console.log('  Initial Reserve:', currentReserve, 'SOL');
